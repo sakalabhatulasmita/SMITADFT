@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+#container{
+border: 2px;
+border-style:dotted;
+background-color:yellow;
+}
+</style>
+<script type="text/javascript">
+function getCanvasContext(){
+	 canvas=document.getElementById("container");
+	 context=canvas.getContext("2d");
+}
+function drawLineInCanvas(){
+	//reference to canvas created in body part]
+	
+	getCanvasContext();
+	context.beginPath();
+	context.moveTo(0,0);
+	context.lineTo(200,200);
+	context.stroke();
+	
+	context.beginPath();
+	context.moveTo(200,0);
+	context.lineTo(0,200);
+	context.stroke();
+	
+	context.beginPath();
+	context.moveTo(200,100);
+	context.lineTo(0,100);
+	context.stroke();
+	
+	context.beginPath();
+	context.moveTo(100,200);
+	context.lineTo(100,0);
+	context.stroke();
+}
+function drawArc(){
+	getCanvasContext();
+	context.beginPath();
+	context.arc(50,50,30,0,Math.PI*2,true);
+	context.lineWidth=20;
+	context.strokeStyle='blue';
+	context.stroke();
+}
+function clearCanvas(){
+	getCanvasContext();
+	context.moveTo(0,0);
+	context.clearRect(0,0,200,200);
+}
+function drawRectangle(){
+	getCanvasContext();
+	context.beginPath();
+	context.rect(10,20,150,70);
+	context.stroke();
+}
+function drawImage(){
+	var img=new Image();
+	img.src="./images/rabbit.svg";
+	getCanvasContext();
+	context.beginPath();
+	context.drawImage(img,0,0);
+}
+function drawText(){
+	getCanvasContext();
+	context.font="italic 10pt calibri";
+	context.fillText('Hello World',50,50);
+}
+function drawStrokeText(){
+	getCanvasContext();
+	context.font="italic 10pt calibri";
+	context.fillStyle="blue";
+	context.fillText('Hello World',50,50);
+}
+function drawTextAlign(){
+	getCanvasContext();
+	context.font="10pt calibri";
+	context.textAlign="center";
+	context.fillStyle="red";
+	context.fillText('Hello World',50,50);
+}
+function fillLinearGradient(){
+	getCanvasContext();
+	context.rect(0,0,200,200);
+	var grd=context.createLinearGradient(0,0,200,200);
+	grd.addColorStop(0,'#8ED6FF');
+	grd.addColorStop(1,'#004CB3');
+	context.fillStyle=grd;
+	context.fill();
+}
+function fillRadialGradient(){
+	getCanvasContext();
+	context.rect(0,0,200,200);
+	var grd=context.createRadialGradient(100,50,10,100,50,300);
+	grd.addColorStop(0,'#8ED6FF');
+	grd.addColorStop(1,'#004CB3');
+	context.fillStyle=grd;
+	context.fill();
+}
+
+</script>
+<!-- <link  -->
+<meta charset="ISO-8859-1">
+<title>Canvas Demo1</title>
+<h1>Simple Demo on canvas API</h1>
+</head>
+<body>
+<b><i><u>Below is the canvas container:</u></i></b><br>
+<canvas width="200" height="200" id="container" >
+sorry!browser not supported
+</canvas>
+<br>
+<br>
+<input type="button" value="draw line" onclick="drawLineInCanvas()">
+<input type="button" value="draw arc" onclick="drawArc()">
+<input type="button" value="DrawRectange" onclick="drawRectangle()">
+<input type="button" value="Draw Image" onclick="drawImage()">
+<input type="button" value="Draw Text" onclick="drawText()"><br><br>
+<input type="button" value="Draw StrokeText" onclick="drawStrokeText()">
+<input type="button" value="Draw TextAlign" onclick="drawTextAlign()">
+<input type="button" value="fill linear gradient" onclick="fillLinearGradient()">
+<input type="button" value="fill radial gradient" onclick="fillRadialGradient()">
+<input type="button" value="clear" onclick="clearCanvas()">
+
+</body>
+</html>
